@@ -22,6 +22,8 @@ public class EV3Recieve { // This is the receiver
 
 	public static void main(String[] args) throws Exception {
 	
+		
+//		All of this nonsense is setting up the pilot commands
 		Wheel wheel1 = WheeledChassis.modelWheel(Motor.C, 43.2).offset(-72);
 		Wheel wheel2 = WheeledChassis.modelWheel(Motor.B, 43.2).offset(72);
 		Chassis chassis = new WheeledChassis(new Wheel[]{wheel1, wheel2}, WheeledChassis.TYPE_DIFFERENTIAL); 
@@ -41,6 +43,11 @@ public class EV3Recieve { // This is the receiver
 		
 		byte[] n = new byte[4];
 		
+		
+		
+//		This is how you set the speed for the robot
+		pilot.setLinearSpeed(600);
+		
 //			float[] fl = new float[2];
 		
 		while(Button.getButtons() != Button.ID_ESCAPE ){
@@ -56,15 +63,22 @@ public class EV3Recieve { // This is the receiver
 				break;
 			}
 			
+//			This is the right turn
 			if (n[0] == 1) {
-				pilot.rotate(-25);
+				pilot.rotate(-20);
 			}
+			
+//			Left turn
 			if (n[1] == 1) {
-				pilot.rotate(25);
+				pilot.rotate(20);
 			}
+
+//			Go Forward
 			if (n[2] == 1) {
 				pilot.forward();
 			}
+			
+//			Go backwards
 			if (n[3] == 1) {
 				pilot.backward();
 			}
